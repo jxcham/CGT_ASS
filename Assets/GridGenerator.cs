@@ -1,3 +1,4 @@
+﻿using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -6,22 +7,32 @@ public class GridGenerator : MonoBehaviour
     public int width = 10;
     public int height = 10;
     public GameObject tilePrefab;
-    public Tile[,] grid;        // 2d array named grid, storing tile(x,y)
+
+    public Tile[,] grid;
+
+    public DijkstraPathfinding pathfinding;
 
     void Start()
     {
-        grid = new Tile[width, height];    // define the space
+        GenerateGrid();
+    }
+
+    public void GenerateGrid()
+    {
+        grid = new Tile[width, height];
 
         for (int x = 0; x < width; x++)
         {
             for (int z = 0; z < height; z++)
             {
                 GameObject tileObj = Instantiate(tilePrefab, new Vector3(x, 0, z), Quaternion.identity);
+
+                tileObj.transform.parent = transform; 
+
                 Tile tile = tileObj.GetComponent<Tile>();
+                grid[x, z] = tile;
 
-                grid[x, z] = tile;          // store into the array
-
-                int rand = Random.Range(0, 4);
+                int rand = UnityEngine.Random.Range(0, 4);
 
                 switch (rand)
                 {
@@ -44,6 +55,30 @@ public class GridGenerator : MonoBehaviour
                         break;
                 }
             }
+        }
+    }
+
+    void ClearGrid()
+    {
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
+    public void RegenerateGrid()
+    {
+        ClearGrid();
+        GenerateGrid();
+
+        if (pathfinding != null)
+        {
+            pathfinding.startTile = null;
+            pathfinding.endTile = null;
+            pathfinding.finalPath.Clear();
+
+            if (pathfinding.lineRenderer != null)
+                pathfinding.lineRenderer.positionCount = 0;
         }
     }
 }

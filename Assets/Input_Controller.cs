@@ -5,6 +5,7 @@ public class InputController : MonoBehaviour
     public Camera cam;
     public DijkstraPathfinding pathfinding;
     public GridGenerator grid;
+    public UIManager uiManager;
 
     void Update()
     {
@@ -19,8 +20,15 @@ public class InputController : MonoBehaviour
 
                 if (clickedTile != null)
                 {
+
+                    uiManager.ShowTileInfo(clickedTile);
+
                     pathfinding.endTile = clickedTile;
                     pathfinding.FindPath();
+                }
+                else
+                {
+                    uiManager.ShowTileInfo(null);
                 }
             }
         }

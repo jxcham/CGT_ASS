@@ -15,6 +15,9 @@ public class DijkstraPathfinding : MonoBehaviour
 
     public List<Tile> finalPath = new List<Tile>();
 
+    public LineRenderer lineRenderer;
+    public UIManager uiManager;
+
     void Update()
     {
         if (player != null)
@@ -144,6 +147,9 @@ public class DijkstraPathfinding : MonoBehaviour
         }
 
         finalPath.Reverse();
+        DrawPath();
+
+        uiManager.ShowPathInfo(finalPath); 
 
         StopAllCoroutines();
         StartCoroutine(MovePlayer());
@@ -173,6 +179,23 @@ public class DijkstraPathfinding : MonoBehaviour
                 t.gCost = Mathf.Infinity;
                 t.parent = null;
             }
+        }
+    }
+
+    void DrawPath()
+    {
+        if (finalPath == null || finalPath.Count == 0)
+        {
+            lineRenderer.positionCount = 0;
+            return;
+        }
+
+        lineRenderer.positionCount = finalPath.Count;
+
+        for (int i = 0; i < finalPath.Count; i++)
+        {
+            Vector3 pos = finalPath[i].transform.position;
+            lineRenderer.SetPosition(i, new Vector3(pos.x, 0.2f, pos.z));
         }
     }
 }
