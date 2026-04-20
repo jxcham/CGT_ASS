@@ -17,7 +17,6 @@ public class GridGenerator : MonoBehaviour
 
     void Start()
     {
-        // Generate only once per Play session
         if (grid == null)
         {
             GenerateGrid();
@@ -30,7 +29,6 @@ public class GridGenerator : MonoBehaviour
 
         grid = new Tile[width, height];
 
-        // deterministic randomness based on seed
         UnityEngine.Random.InitState(seed);
 
         for (int x = 0; x < width; x++)
@@ -78,7 +76,29 @@ public class GridGenerator : MonoBehaviour
             }
         }
 
+        // =========================
+        // FIX: ensure spawn area is safe
+        // =========================
+        MakeSpawnAreaSafe();
+
         AdjustCamera();
+        ResetPlayer();
+    }
+
+    void MakeSpawnAreaSafe()
+    {
+        for (int x = 0; x <= 1; x++)
+        {
+            for (int z = 0; z <= 1; z++)
+            {
+                if (grid[x, z] != null)
+                {
+                    grid[x, z].isWalkable = true;
+                    grid[x, z].cost = 1;
+                    grid[x, z].SetColor(Color.white);
+                }
+            }
+        }
     }
 
     void ClearGrid()
@@ -93,7 +113,6 @@ public class GridGenerator : MonoBehaviour
 
     public void RegenerateGrid()
     {
-        // change seed → new map
         seed = UnityEngine.Random.Range(int.MinValue, int.MaxValue);
 
         transform.position = Vector3.zero;
@@ -117,11 +136,10 @@ public class GridGenerator : MonoBehaviour
     {
         ClearGrid();
 
-        yield return null; // wait for destroy
+        yield return null;
 
         GenerateGrid();
         AdjustCamera();
-        ResetPlayer();
     }
 
     void AdjustCamera()
