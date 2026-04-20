@@ -68,6 +68,18 @@ public class DijkstraPathfinding : MonoBehaviour
                 }
             }
         }
+        OnPathNotFound();
+    }
+
+    void OnPathNotFound()
+    {
+        finalPath.Clear();
+
+        if (lineRenderer != null)
+            lineRenderer.positionCount = 0;
+
+        if (uiManager != null)
+            uiManager.ShowPathInfo(null);
     }
 
     Tile GetLowestCostTile(List<Tile> list)
