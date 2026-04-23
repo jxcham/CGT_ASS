@@ -17,7 +17,7 @@ public class DijkstraPathfinding : MonoBehaviour
 
     public LineRenderer lineRenderer;
     public UIManager uiManager;
-
+   
     void Update()
     {
         if (player != null)
@@ -29,6 +29,8 @@ public class DijkstraPathfinding : MonoBehaviour
     public void FindPath()
     {
         if (startTile == null || endTile == null) return;
+
+        float startTime = Time.realtimeSinceStartup;
 
         ResetGrid();
 
@@ -47,6 +49,11 @@ public class DijkstraPathfinding : MonoBehaviour
 
             if (current == endTile)
             {
+                float endTime = Time.realtimeSinceStartup;
+                float pathTime = endTime - startTime;
+
+                UnityEngine.Debug.Log("Pathfinding Time (SUCCESS): " + pathTime + "s");
+
                 RetracePath();
                 return;
             }
@@ -68,6 +75,12 @@ public class DijkstraPathfinding : MonoBehaviour
                 }
             }
         }
+
+        float failEndTime = Time.realtimeSinceStartup;
+        float failTime = failEndTime - startTime;
+
+        UnityEngine.Debug.Log("Pathfinding Time (NO PATH): " + failTime + "s");
+
         OnPathNotFound();
     }
 
@@ -136,6 +149,9 @@ public class DijkstraPathfinding : MonoBehaviour
 
     Tile GetTileFromWorld(Vector3 pos)
     {
+        if (gridGenerator == null || gridGenerator.grid == null)
+            return null;
+
         int x = Mathf.RoundToInt(pos.x);
         int z = Mathf.RoundToInt(pos.z);
 
