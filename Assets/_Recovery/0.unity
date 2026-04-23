@@ -723,55 +723,6 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
---- !u!1 &286947727
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 286947729}
-  - component: {fileID: 286947728}
-  m_Layer: 0
-  m_Name: PerformanceTest
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &286947728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 286947727}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c789c527e4b666e4b8a448896468cede, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PerformanceTest
-  gridGenerator: {fileID: 1755957556}
-  pathfinding: {fileID: 249189106}
-  gridSize: 10
-  testRuns: 20
-  innerLoop: 50
---- !u!4 &286947729
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 286947727}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.22282, y: 0, z: 0.12806}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &337255240
 GameObject:
   m_ObjectHideFlags: 0
@@ -2399,6 +2350,55 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9209318843092043807, guid: fd50b43e03168a14eae63fa09ebb4ca3, type: 3}
   m_PrefabInstance: {fileID: 5846260336496705018}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1594841891
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1594841893}
+  - component: {fileID: 1594841892}
+  m_Layer: 0
+  m_Name: PerformanceTest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1594841892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594841891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c789c527e4b666e4b8a448896468cede, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  gridGenerator: {fileID: 1755957556}
+  pathfinding: {fileID: 249189106}
+  gridSize: 10
+  testRuns: 20
+  innerLoop: 100
+--- !u!4 &1594841893
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594841891}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.22282, y: 0, z: 0.12806}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1661802000
 GameObject:
   m_ObjectHideFlags: 0
@@ -2884,4 +2884,4 @@ SceneRoots:
   - {fileID: 73217598}
   - {fileID: 1875430308}
   - {fileID: 17538668}
-  - {fileID: 286947729}
+  - {fileID: 1594841893}
